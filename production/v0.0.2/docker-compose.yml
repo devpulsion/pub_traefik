@@ -1,0 +1,38 @@
+version: "3.3"
+
+services:
+  traefik:
+    image: traefik:v2.0
+    networks:
+      - traefik_network
+    security_opt:
+      - no-new-privileges:true
+    ports:
+      - 80:80
+      - 443:443
+      - 8080:8080
+    restart: unless-stopped
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+      - ./traefik.yml:/traefik.yml:ro
+      - ./acme:/acme
+    labels:
+      traefik.enable: "true"
+      # HTTP
+      traefik.http.routers.traefik.entrypoints: http
+      traefik.http.routers.traefik.rule: Host(`${DOMAIN:-traefik.devpulsion.com}`)
+      # Dashboard
+      traefik.http.routers.traefik-secure.service: api@internal
+      # Middleware
+      traefik.http.middlewares.traefik-https-redirect.redirectscheme.scheme: https
+      traefik.http.routers.traefik.middlewares: traefik-https-redirect
+      # HTTPS
+      traefik.http.routers.traefik-secure.entrypoints: https
+      traefik.http.routers.traefik-secure.rule: Host(`${DOMAIN:-traefik.devpulsion.com}`)
+      traefik.http.routers.traefik-secure.tls: "true"
+      traefik.http.routers.traefik-secure.tls.certresolver: traefikchallenge
+    command: --api.insecure=true --providers.docker
+
+networks:
+  traefik_network:
+    external: true
