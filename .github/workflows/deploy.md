@@ -21,6 +21,5 @@ All are required, there is no default
 | DEPLOY_PATH        | Path on the server where the scripts will be copy | /web/traefik      |
 | DEPLOY_PORT        | Port to log in                                    | 22                |
 | DEPLOY_KEY         | SSH private key                                   |                   | 
-| DEPLOY_PASSPHRASE  | passphrase to encrypt the private key             |                   | 
 
-For key/passphrase, read [here](https://github.com/appleboy/ssh-action#setting-up-ssh-key)
+For deploy key, read [here](https://github.com/appleboy/ssh-action#setting-up-ssh-key)
