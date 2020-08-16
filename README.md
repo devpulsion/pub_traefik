@@ -1,23 +1,23 @@
 # Devpulsion Traefik server
 
-To get easy working HTTPS.
+Reverse proxy based on traefik v2.
 
-This repo help to provide and deploy [traefik](https://docs.traefik.io/) with docker as backend into production for the [devpulsion](https://devpulsion.com) server. Can quickly be set for your own server with a few changes.
+This repo provides:
+- [traefik](https://docs.traefik.io/) docker image configured to work with docker provider
+- github action to automatically deploy on dedicatred server. See [details explained here](./blob/master/.github/workflows/deploy.md)
 
-- CI is done with github actions
-- Traefik is running thanks to Docker
-- The `/production` folder is copy on the server with config and script to (re)start the docker image.
-- Start any docker-compose image with traefik label and you'll get your site up and running with https.
+This is the devpulsion.com frontend reverse proxy. You can easily fork it for your own usage.
 
 ## How to use it
 
 If you want to use it for your own purpose: 
 
+- install docker on your server
 - clone the repo on Github
-- update the `/production/traefik.yml` emails (mine is hardcoded)
-- set all the required environement vars on Github: read `.github/workflows/DEPLOY.md` to get the full list
-
-Once done and push on github, create a Release and the Github workflow will process the deploy workflow.
+  - update the `/production/current/traefik.yml` emails (mine is hardcoded)
+  - drop all the previous versions `/production/vXXX` 
+- set all the environement vars on Github. See the [list here](./blob/master/.github/workflows/deploy.md)
+- create a github version to trigger the deployment workflow
 
 ## LICENSE
 
