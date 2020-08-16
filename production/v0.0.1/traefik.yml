@@ -1,0 +1,35 @@
+global:
+  sendAnonymousUsage: false
+
+log:
+  level: WARN # DEBUG, INFO, WARN, ERROR, FATAL, PANIC
+  format: common
+
+api:
+  dashboard: true
+  insecure: true
+
+entryPoints:
+  http:
+    address: ":80"
+  https:
+    address: ":443"
+
+providers:
+  docker:
+    endpoint: "unix:///var/run/docker.sock"
+    exposedByDefault: false
+
+certificatesResolvers:
+  traefikchallenge:
+    acme:
+      email: contact@devpulsion.com
+      storage: acme/traefikchallenge.acme.json
+      httpChallenge:
+        entryPoint: http
+  siteschallenge:
+    acme:
+      email: contact@devpulsion.com
+      storage: acme/siteschallenge.acme.json
+      httpChallenge:
+        entryPoint: http
