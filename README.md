@@ -1,6 +1,7 @@
 # Devpulsion Traefik server
 
 [![Actions Status](https://github.com/devpulsion/pub_traefik/workflows/Deploy%20release%20in%20production/badge.svg)](https://github.com/devpulsion/pub_traefik/actions)
+[![Release](https://img.shields.io/github/v/release/devpulsion/pub_traefik.svg)](https://github.com/devpulsion/pub_traefik/releases)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 
 Reverse proxy based on traefik v2.
